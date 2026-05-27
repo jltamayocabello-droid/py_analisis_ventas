@@ -17,3 +17,10 @@ print("-" * 30)
 print(f"Registros: {len(df)}")
 print(f"Meses distintos: {df['fecha'].dt.to_period('M').nunique()}")
 print(df.head())
+
+df['mes'] = df['fecha'].dt.to_period('M')
+ventas_por_mes = df.groupby('mes').apply(lambda d: (d['cantidad'] * d['precio']).sum())
+ventas_por_mes = ventas_por_mes.sort_index()
+
+print("\nVentas por mes:")
+print(ventas_por_mes)
