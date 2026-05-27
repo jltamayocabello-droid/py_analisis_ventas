@@ -1,5 +1,6 @@
 from pathlib import Path
 import pandas as pd
+import matplotlib.pyplot as plt
 
 # Definir la ruta del archivo CSV (asumiendo que está en el mismo directorio que este script)
 ARCHIVO_VENTAS = Path(__file__).parent / "ventas.csv"
@@ -49,3 +50,19 @@ mayor_ingreso = ventas_prod['ingreso'].idxmax()
 
 print(f"\nProducto más vendido en unidades: {mas_vendido} (total {ventas_prod.loc[mas_vendido, 'cantidad']})")
 print(f"Producto con mayores ingresos: {mayor_ingreso} (total {ventas_prod.loc[mayor_ingreso, 'ingreso']:.2f} €)")
+
+# --- Gráfico de Ventas por Mes ---
+# Convertir el índice (Period) a string para un mejor manejo en matplotlib
+ventas_por_mes.index = ventas_por_mes.index.astype(str)
+
+plt.figure(figsize=(6,4))
+ventas_por_mes.plot(kind='bar')
+
+plt.title("Ventas por Mes")
+plt.xlabel("Mes")
+plt.ylabel("Ventas (€)")
+plt.tight_layout()
+
+# Guardar el gráfico en un archivo PNG
+plt.savefig(Path(__file__).parent / "ventas_por_mes.png")
+plt.show()
