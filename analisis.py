@@ -24,3 +24,16 @@ ventas_por_mes = ventas_por_mes.sort_index()
 
 print("\nVentas por mes:")
 print(ventas_por_mes)
+
+df['ingreso'] = df['cantidad'] * df['precio']
+
+ventas_prod = df.groupby('producto').agg({
+    'cantidad': 'sum',
+    'ingreso': 'sum'
+})
+
+mas_vendido = ventas_prod['cantidad'].idxmax()
+mayor_ingreso = ventas_prod['ingreso'].idxmax()
+
+print(f"\nProducto más vendido en unidades: {mas_vendido} (total {ventas_prod.loc[mas_vendido, 'cantidad']})")
+print(f"Producto con mayores ingresos: {mayor_ingreso} (total {ventas_prod.loc[mayor_ingreso, 'ingreso']:.2f} €)")
