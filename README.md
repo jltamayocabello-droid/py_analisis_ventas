@@ -1,3 +1,5 @@
+# 📊 Sales Analyzer — Informe de Ventas Mensuales
+
 ![Estado del Proyecto](https://img.shields.io/badge/Estado-Completado-success)
 ![Stack](https://img.shields.io/badge/Stack-Python%20%7C%20Pandas%20%7C%20Matplotlib-blue)
 ![Análisis](https://img.shields.io/badge/Datos-CSV%20%7C%20Estad%C3%ADsticas-orange)
@@ -7,7 +9,7 @@
 
 ---
 
-# 📊 Sales Analyzer — Informe de Ventas Mensuales
+# Descripción del proyecto
 
 Script de automatización y análisis de datos en **Python** diseñado para procesar, limpiar y visualizar métricas de negocio a partir de un conjunto de transacciones históricas en formato CSV (`ventas.csv`). 
 
