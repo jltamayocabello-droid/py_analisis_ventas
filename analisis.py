@@ -65,4 +65,16 @@ plt.tight_layout()
 
 # Guardar el gráfico en un archivo PNG
 plt.savefig(Path(__file__).parent / "ventas_por_mes.png")
+
+# --- Gráfico de Top 5 Productos por Ingresos ---
+top5 = ventas_prod.nlargest(5, 'ingreso')
+
+plt.figure(figsize=(6,4))
+plt.bar(top5.index, top5['ingreso'])
+plt.title("Top 5 Productos por Ingresos")
+plt.ylabel("Ingresos (€)")
+plt.xlabel("Producto")
+plt.tight_layout()
+
+plt.savefig(Path(__file__).parent / "top5_productos.png")
 plt.show()
