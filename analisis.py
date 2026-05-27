@@ -1,12 +1,13 @@
 from pathlib import Path
-
 import pandas as pd
 
+# Definir la ruta del archivo CSV (asumiendo que está en el mismo directorio que este script)
 ARCHIVO_VENTAS = Path(__file__).parent / "ventas.csv"
 
+# Cargar los datos del CSV y convertir la columna 'fecha' a tipo datetime
 df = pd.read_csv(ARCHIVO_VENTAS, parse_dates=["fecha"])
 
-# Asegurar que cantidad y precio sean numéricos
+# Asegurar que cantidad y precio sean numéricos (convierte errores a NaN)
 df["cantidad"] = pd.to_numeric(df["cantidad"], errors="coerce")
 df["precio"] = pd.to_numeric(df["precio"], errors="coerce")
 
@@ -14,24 +15,35 @@ print("Tipos de datos (df.dtypes):")
 print(df.dtypes)
 print("-" * 30)
 
+# Mostrar información básica del conjunto de datos cargado
 print(f"Registros: {len(df)}")
 print(f"Meses distintos: {df['fecha'].dt.to_period('M').nunique()}")
 print(df.head())
 
+# --- Cálculo de ventas totales por mes ---
+# Extraer solo el año y el mes de la fecha en una nueva columna
 df['mes'] = df['fecha'].dt.to_period('M')
+
+# Agrupar por mes y sumar el producto de cantidad por precio
 ventas_por_mes = df.groupby('mes').apply(lambda d: (d['cantidad'] * d['precio']).sum())
+
+# Ordenar cronológicamente
 ventas_por_mes = ventas_por_mes.sort_index()
 
 print("\nVentas por mes:")
 print(ventas_por_mes)
 
+# --- Análisis de productos (más vendido vs mayores ingresos) ---
+# Calcular el ingreso por cada transacción
 df['ingreso'] = df['cantidad'] * df['precio']
 
+# Agrupar por producto y sumar tanto la cantidad total como el ingreso total
 ventas_prod = df.groupby('producto').agg({
     'cantidad': 'sum',
     'ingreso': 'sum'
 })
 
+# Identificar qué producto tiene el valor máximo en cada categoría
 mas_vendido = ventas_prod['cantidad'].idxmax()
 mayor_ingreso = ventas_prod['ingreso'].idxmax()
 
