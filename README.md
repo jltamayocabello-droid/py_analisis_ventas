@@ -1,4 +1,4 @@
-# 📊 Sales Analyzer — Informe de Ventas Mensuales
+# 📊 Análisis de Datos – Informe de Ventas Mensuales
 
 ![Estado del Proyecto](https://img.shields.io/badge/Estado-Completado-success)
 ![Stack](https://img.shields.io/badge/Stack-Python%20%7C%20Pandas%20%7C%20Matplotlib-blue)
@@ -9,7 +9,7 @@
 
 ---
 
-# Descripción del proyecto
+## 📝 Descripción del Proyecto
 
 Script de automatización y análisis de datos en **Python** diseñado para procesar, limpiar y visualizar métricas de negocio a partir de un conjunto de transacciones históricas en formato CSV (`ventas.csv`). 
 
@@ -17,7 +17,7 @@ El proyecto calcula de forma autónoma ingresos por mes, clasifica los productos
 
 ---
 
-### 🎯 Objetivos del Proyecto
+## 🎯 Objetivos del Proyecto
 
 El principal objetivo es construir un pipeline de análisis de datos robusto y portable que automatice las siguientes tareas:
 * ✅ **Ingesta y Limpieza Coercitiva:** Cargar transacciones comerciales y mitigar errores de formatos e inconsistencias tipográficas.
